@@ -4,7 +4,7 @@ angular.module('starter.services', [])
 
   
   var ref = new Firebase('https://p2pdelivery.firebaseio.com');  
-  var refArray = $firebase(ref.child('User')).$asObject();   
+  var refArray = $firebase(ref.child('users')).$asArray();   
   
   console.log(refArray);
 
@@ -15,10 +15,15 @@ angular.module('starter.services', [])
       
     all: function() {
       return refArray;
-    },
+    };
+    get: function(id) {
+      var userid = $firebase(ref.child('users').child(id)).$asObject();      
+      return userid;
+        console.log(userid);
+    }
   };
 
-  return [Playlist]; 
+  return Playlist; 
 
 
 

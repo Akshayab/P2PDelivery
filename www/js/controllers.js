@@ -34,13 +34,25 @@ angular.module('starter.controllers', ['firebase'])
 })
 
 .controller('PlaylistsCtrl', function($scope, $firebase) {
-  var firebase = new Firebase("https://p2pdelivery.firebaseio.com/");
+  var usersArray = new Firebase("https://p2pdelivery.firebaseio.com/users");
 
-  var test = firebase.once("value", function (value){
-    $scope.playlists = [value.val(), {id: 1}];
+  var test = usersArray.once("value", function (value){
+    $scope.playlists = value.val();
     console.log($scope.playlists);
   })
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('PlaylistCtrl', function($scope, $stateParams, $firebase) {
+   var usersArray = new Firebase("https://p2pdelivery.firebaseio.com/users");
+   var id = $stateParams.id;
+   console.log($stateParams);
+   var userid = usersArray.child(id).once("value", function (value){
+     $scope.playlist = value.val();
+    
+   })
+
+  //$scope.playlist = Playlist.get($stateParams.id);
+
+  //console.log(userid); 
+  //$scope.playlist = userid;
 });
