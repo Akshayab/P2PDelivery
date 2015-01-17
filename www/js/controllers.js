@@ -36,7 +36,10 @@ angular.module('starter.controllers', ['firebase'])
 .controller('PlaylistsCtrl', function($scope, $firebase) {
   var firebase = new Firebase("https://p2pdelivery.firebaseio.com/");
 
-  $scope.playlists = [firebase.User, {id: 1}];
+  var test = firebase.once("value", function (value){
+    $scope.playlists = [value.val(), {id: 1}];
+    console.log($scope.playlists);
+  })
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
