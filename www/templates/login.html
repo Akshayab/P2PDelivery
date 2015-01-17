@@ -21,21 +21,6 @@
         </label>
       </div>
     </form>
-    <br>
-    <form ng-submit="creatUser()">
-      <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Email</span>
-          <input type="email" ng-model="loginData.email">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
-        </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
-        </label>
-      </div>
-    </form>    
+    <div class="register item" ng-click="goToSignUpPage()">Click here to register!</div>
   </ion-content>
 </ion-modal-view>

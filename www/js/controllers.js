@@ -3,7 +3,7 @@ angular.module('starter.controllers', ['firebase'])
 .controller('AppCtrl', ["$scope", "$ionicModal", "$firebaseAuth", function($scope, $ionicModal, $timeout, $firebaseAuth) {
 
   // Users Array on Firebase
-  var usersArray = new Firebase("https://p2pdelivery.firebaseio.com/users");
+  var usersArray = new Firebase("https://p2pdelivery.firebaseio.com");
 
   // Form data for the login modal
   $scope.loginData = {
@@ -18,6 +18,16 @@ angular.module('starter.controllers', ['firebase'])
     $scope.modal = modal;
   });
 
+  $scope.goToSignUpPage = function () {
+    $scope.modal.remove();
+    $ionicModal.fromTemplateUrl('templates/signup.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+    $scope.modal.show();
+  });
+  }
+
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
@@ -30,10 +40,10 @@ angular.module('starter.controllers', ['firebase'])
 
   // Create a user
   $scope.createUser = function() {
-    usersArray.createUser({
-      email: $scope.loginData.email,
-      password: $scope.loginData.password
-  }, function(error) {
+    var newUser = usersArray.createUser({
+      email: $scope.createUser.email,
+      password: $scope.createUser.password
+  }, function(error, user) {
     if (error) {
       switch (error.code) {
         case "EMAIL_TAKEN":
@@ -46,19 +56,50 @@ angular.module('starter.controllers', ['firebase'])
           console.log("Error creating user:", error);
       }
     } else {
-      console.log("User account created successfully!");
+      console.log("User account created successfully! " + user);
+      usersArray.authWithPassword({
+      email: $scope.createUser.email,
+      password: $scope.createUser.password
+    }, function (error, authData) {
+      if(!error){
+        usersArray.child("authentication").child(authData.uid).set(authData);
+        var userid_array = authData.uid.split(":");
+        var userid = userid_array[1];
+        usersArray.child("users").child(userid).set({
+          id: userid,
+          name: $scope.createUser.userName,
+          email: $scope.createUser.email,
+          image: "nil",
+          isNinja: true,
+          location: "nil",
+          points: 500,
+          rating: 5,
+          venmo_token: 0,
+          do_not_disturb: false
+        })
+      }
+      else{
+        console.log(error);
+      }
+    })
     }
-  })};
+  })
+
+  };
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+    usersArray.authWithPassword({
+      email : $scope.loginData.email,
+      password : $scope.loginData.password
+    }, function (error, authData) {
+        if (error) {
+          console.log("Login Failed!");
+        }
+        else {
+          console.log("Authentication successful with payload: ", authData);
+        }
+    })
   };
 }])
 

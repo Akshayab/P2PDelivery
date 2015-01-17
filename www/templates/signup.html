@@ -1,0 +1,22 @@
+<ion-modal-view>
+    <form ng-submit="createUser()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Name</span>
+          <input type="text" ng-model="createUser.userName">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Email</span>
+          <input type="email" ng-model="createUser.email">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="createUser.password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Sign up</button>
+        </label>
+      </div>
+    </form>    
+  </ion-content>
+</ion-modal-view>
