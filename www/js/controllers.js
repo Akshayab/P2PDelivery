@@ -1,8 +1,15 @@
 angular.module('starter.controllers', ['firebase'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', ["$scope", "$ionicModal", "$firebaseAuth", function($scope, $ionicModal, $timeout, $firebaseAuth) {
+
+  // Users Array on Firebase
+  var usersArray = new Firebase("https://p2pdelivery.firebaseio.com/users");
+
   // Form data for the login modal
-  $scope.loginData = {};
+  $scope.loginData = {
+    email: $scope.email,
+    password: $scope.password
+  };
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -21,6 +28,28 @@ angular.module('starter.controllers', ['firebase'])
     $scope.modal.show();
   };
 
+  // Create a user
+  $scope.createUser = function() {
+    usersArray.createUser({
+      email: $scope.loginData.email,
+      password: $scope.loginData.password
+  }, function(error) {
+    if (error) {
+      switch (error.code) {
+        case "EMAIL_TAKEN":
+          console.log("The new user account cannot be created because the email is already in use.");
+          break;
+        case "INVALID_EMAIL":
+          console.log("The specified email is not a valid email.");
+          break;
+        default:
+          console.log("Error creating user:", error);
+      }
+    } else {
+      console.log("User account created successfully!");
+    }
+  })};
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
@@ -31,28 +60,23 @@ angular.module('starter.controllers', ['firebase'])
       $scope.closeLogin();
     }, 1000);
   };
-})
+}])
 
 .controller('PlaylistsCtrl', function($scope, $firebase) {
   var usersArray = new Firebase("https://p2pdelivery.firebaseio.com/users");
 
   var test = usersArray.once("value", function (value){
     $scope.playlists = value.val();
-    console.log($scope.playlists);
+    
   })
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams, $firebase) {
    var usersArray = new Firebase("https://p2pdelivery.firebaseio.com/users");
-   var id = $stateParams.id;
-   console.log($stateParams);
-   var userid = usersArray.child(id).once("value", function (value){
+   
+   var userid = usersArray.child($stateParams.id).once("value", function (value){
      $scope.playlist = value.val();
     
    })
 
-  //$scope.playlist = Playlist.get($stateParams.id);
-
-  //console.log(userid); 
-  //$scope.playlist = userid;
 });
