@@ -72,12 +72,14 @@ angular.module('starter.controllers', ['firebase'])
           email: $scope.createUser.email,
           image: "nil",
           isNinja: true,
-          location: "nil",
+          location: {"lat":42.2814,"lng":-83.7483},
           points: 500,
           rating: 5,
           venmo_token: 0,
           do_not_disturb: false
         })
+        $scope.modal.hide();
+        window.location.href = "#/app/search.html?id=userid";
       }
       else{
         console.log(error);
@@ -99,28 +101,14 @@ angular.module('starter.controllers', ['firebase'])
         }
         else {
           console.log("Authentication successful with payload: ", authData);
+          $scope.modal.hide();
+          window.location.href = "#/app/search.html&id=userid";
         }
     })
   };
 
-  $scope.ninjas = [];
-
-  // Ninjas array to populate the map
-  
-
-  var ninjas = usersArray.child('users').on("value", function (ninjas) {
-
-    for (var key in ninjas.val()) {
-       if (ninjas.val()[key].location != "nil" && ninjas.val()[key].isNinja) {
-          $scope.ninjas.push(ninjas.val()[key].location);
-       }
-    }
-  })  
-    
-    
-
-  
-    //console.log($scope.ninjas);
+  $scope.showMap = function () {
+      //console.log($scope.ninjas);
   angular.extend($scope, {
     center: {
         lat: $scope.lat,
@@ -137,6 +125,25 @@ angular.module('starter.controllers', ['firebase'])
     
   }); 
 
+  }
+
+  $scope.ninjas = [];
+
+  // Ninjas array to populate the map
+  var markers = {};
+  var ninjaSnapShot;
+  
+  usersArray.child('users').once("value", function (ninjas) {
+
+    markers = ninjas.val().filter(function (nin) {
+      return nin.isNinja && nin.location != nil
+    });
+
+    console.log(markers);
+    $scope.showMap()
+  })    
+  
+  
 }])
 
   // Show users on the map
