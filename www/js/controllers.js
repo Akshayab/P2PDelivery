@@ -187,4 +187,45 @@ angular.module('starter.controllers', ['firebase'])
     
    })
 
+})
+
+.controller('ProfileCtrl', function($scope, $stateParams, $firebase){
+
+})
+
+.directive("filepicker", function(){
+  return {
+    scope: {
+      callback: '&',
+      'pickerclass': '@'
+    },
+    transclude: true,
+    restrict: "A",
+
+    template: "<button href='javascript:;' class='{{pickerclass}} button button-clear button-assertive' ng-click='pickFiles()' ng-transclude>Upload Picture...</button>",
+    link: function(scope, element, attrs) {
+      scope.pickFiles = function () {
+        var picker_options = {
+          container: 'modal',
+          mimetypes: "image/*",
+          services: ['COMPUTER','FACEBOOK','WEBCAM', 'DROPBOX', 'FLICKR']
+          };
+
+        var path = attrs.path ? attrs.path : '/uploads/',
+          container = attrs.container ? attrs.container : 'documents.e-freightliner.com';
+
+        var store_options = {
+          location: 'S3',
+          path: path,
+          container: container
+        };
+        filepicker.setKey("AucuSEbFQdWQGPMB4huCgz");
+      
+        filepicker.pickAndStore(picker_options, store_options, function (fpfile) {
+            console.log(JSON.stringify(fpfile));
+            $('img').attr('src',JSON.stringify(fpfile).url)
+        });
+      };
+    }
+  };
 });

@@ -23,7 +23,7 @@
     font-size: 24px;
 }
 
-.button-outline, .btn-center {
+.button-outline, .btn-center, .button-clear {
 	display: block;
 	margin-right: auto;
 	margin-left: auto;

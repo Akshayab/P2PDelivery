@@ -1,8 +1,11 @@
 
 <ion-view view-title="PROFILE" class="show-back-button">
   <ion-content>
-    <img src="http://placehold.it/150x150">
 
+  	<div>
+    <img src="http://placehold.it/150x150">
+    <div filepicker path="/s3ServerPath/" pickerclass="btn btn-default" container="Mys3Bucket" multiple="true" mimetype="*" callback="callBackToExecuteAfterUpload(file)" multiple=false>Upload Picture...</div>
+    </div>
 
   <div class="list list-inset">
 	  <label class="item item-input"> 
