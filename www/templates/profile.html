@@ -3,22 +3,22 @@
   <ion-content>
 
   	<div>
-    <img src="http://placehold.it/150x150">
+    <img class="js-profile" src="http://placehold.it/150x150">
     <div filepicker path="/s3ServerPath/" pickerclass="btn btn-default" container="Mys3Bucket" multiple="true" mimetype="*" callback="callBackToExecuteAfterUpload(file)" multiple=false>Upload Picture...</div>
     </div>
 
   <div class="list list-inset">
 	  <label class="item item-input"> 
 	    <i class="icon ion-person"></i>
-	    <input type="text" value={{profile.name}}>
+	    <input type="text" value={{profile.name}} placeholder="Name">
 	  </label>
 	   <label class="item item-input"> 
 	    <i class="icon ion-email"></i>
-	    <input type="text" value={{profile.email}}>
+	    <input type="text" value={{profile.email}} placeholder="Email">
 	  </label>
 	   <label class="item item-input"> 
 	   	<i class="icon ion-android-call"></i>  
-	    <input type="text" value={{profile.phoneNumber}}>
+	    <input type="text" value={{profile.phoneNumber}} placeholder="Phone Number">
 	  </label>
 	   <label class="item item-input">  
 	   	<i class="icon ion-ribbon-b"></i>

@@ -1,5 +1,10 @@
 /* Misc Overrides */
 
+.js-profile{
+    width: 150px;
+    height: 150px;
+}
+
 .show-back-button .back-button.hide {
     display: block;
 }

@@ -223,7 +223,6 @@ angular.module('starter.controllers', ['firebase'])
       
         filepicker.pickAndStore(picker_options, store_options, function (fpfile) {
             console.log(JSON.stringify(fpfile));
-            $('img').attr('src',JSON.stringify(fpfile).url)
         });
       };
     }
