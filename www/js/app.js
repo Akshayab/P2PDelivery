@@ -39,11 +39,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase', 'leaflet-
     }
   })
 
-  .state('app.browse', {
-    url: "/browse",
+  .state('app.profile', {
+    url: "/profile",
     views: {
       'menuContent': {
-        templateUrl: "templates/browse.html"
+        templateUrl: "templates/profile.html"
       }
     }
   })
@@ -67,5 +67,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase', 'leaflet-
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/search');
 });

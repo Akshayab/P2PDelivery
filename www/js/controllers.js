@@ -4,6 +4,7 @@ angular.module('starter.controllers', ['firebase'])
 
   // Users Array on Firebase
   var usersArray = new Firebase("https://p2pdelivery.firebaseio.com");
+  var testArray = [];
 
   // Form data for the login modal
   $scope.loginData = {
@@ -101,7 +102,57 @@ angular.module('starter.controllers', ['firebase'])
         }
     })
   };
+
+  $scope.ninjas = [];
+
+  // Ninjas array to populate the map
+  
+
+  var ninjas = usersArray.child('users').on("value", function (ninjas) {
+
+    for (var key in ninjas.val()) {
+       if (ninjas.val()[key].location != "nil" && ninjas.val()[key].isNinja) {
+          $scope.ninjas.push(ninjas.val()[key].location);
+       }
+    }
+  })  
+    
+    
+
+  
+    //console.log($scope.ninjas);
+  angular.extend($scope, {
+    center: {
+        lat: $scope.lat,
+        lng: $scope.lng,
+        zoom: 5
+    },
+    //markers: JSON.stringify($scope.ninjas)
+    markers: {
+      mainMarker: {
+        lat: 50,
+        lng: -1.0
+      }
+    }
+    
+  }); 
+
 }])
+
+  // Show users on the map
+
+
+  
+  // var map = L.map('mapBox');
+
+  // for (var i = 0; i < $scope.ninjas.length; i++) {
+  //  marker = new L.marker([$scope.ninjas[i][1],$scope.ninjas[i][2]])
+  //   .bindPopup($scope.ninjas[i][0])
+  //   .addTo(map);
+  // } 
+  
+
+
 
 .controller('PlaylistsCtrl', function($scope, $firebase) {
   var usersArray = new Firebase("https://p2pdelivery.firebaseio.com/users");
