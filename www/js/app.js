@@ -4,6 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+
 angular.module('starter', ['ionic', 'starter.controllers', 'firebase', 'leaflet-directive'])
 
 .run(function($ionicPlatform) {
@@ -79,6 +80,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase', 'leaflet-
       }
     }
   });
+
+  var usersArray = new Firebase("https://p2pdelivery.firebaseio.com");
+  var auth = usersArray.getAuth();
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/userRequestView');
+  if(auth) {
+    $urlRouterProvider.otherwise('/app/userRequestView');
+  } else {
+    $urlRouterProvider.otherwise('/app/login');
+  }
+  
 });

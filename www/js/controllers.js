@@ -39,6 +39,11 @@ angular.module('starter.controllers', ['firebase'])
     $scope.modal.show();
   };
 
+  $scope.logout = function () {
+    var user = new Firebase("https://p2pdelivery.firebaseio.com");
+    user.unauth();
+  }
+
   // Create a user
   $scope.createUser = function() {
     var newUser = usersArray.createUser({
