@@ -60,6 +60,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase', 'leaflet-
       views: {
         'menuContent': {
           templateUrl: "templates/userRequestView.html",
+          controller: 'MapCtrl'
         }
       }
     })

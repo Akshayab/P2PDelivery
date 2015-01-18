@@ -122,7 +122,7 @@ angular.module('starter.controllers', ['firebase'])
           //     "email": authData.password.email,
           //     "image": userimg
           // };
-          currentUserObject = $firebase(usersArray.child('users').child(userid)).asObject();
+          currentUserObject = $firebase(usersArray.child('users').child(userid)).$asObject();
           $scope.currentUser = currentUserObject;
           console.log($scope.currentUser);
           localStorage.setItem("currentUser", $scope.currentUser);
@@ -132,58 +132,43 @@ angular.module('starter.controllers', ['firebase'])
   };
 
 
-  // $scope.centerMap = {
-  //   lat: 
-  // }
-  $scope.showMap = function () {
-      //console.log($scope.ninjas);
-  angular.extend($scope, {
-    center: {
-        lat: 50,
-        lng: 50,
-        zoom: 5
-    },
-    markers: {
-      mainMarker: {
-        lat: 42.2841,
-        lng: -83.74
-      },
-      marker2: {
-        lat: 43.2841,
-        lng: -83.74
-      },
-      marker3: {
-        lat: 41.2841,
-        lng: -84.74
-      },
-      marker4: {
-        lat: 42.218431,
-        lng: -83.724
-      },
-      marker5: {
-        lat: 44.2841,
-        lng: -93.74
-      }
-    }
-    
-  }); 
-  }
+  $scope.centerMap = {
+    lat: 50,
+    lng: 50,
+    zoom: 5
+  }  
+  
 }])
 
-  // Show users on the map
-
-
-  
-  // var map = L.map('mapBox');
-
-  // for (var i = 0; i < $scope.ninjas.length; i++) {
-  //  marker = new L.marker([$scope.ninjas[i][1],$scope.ninjas[i][2]])
-  //   .bindPopup($scope.ninjas[i][0])
-  //   .addTo(map);
-  // } 
   
 
+.controller('MapCtrl', function($scope, $firebase) {
+  var usersArray = new Firebase("https://p2pdelivery.firebaseio.com/users");
 
+    mapMarkersObjects = {};
+
+    var mapMarkers = $firebase(usersArray).$asArray();
+
+
+    usersArray.on("value", function(data){
+      data.forEach(function(childSnapshot) {
+        var key = childSnapshot.key();  
+        var location = childSnapshot.val().location;      
+        //console.log(location);
+
+        if (location != "nil") {
+          var locname = "location" + key;
+          mapMarkersObjects[locname] = location;
+        }
+      });   
+      console.log(mapMarkersObjects);
+    })
+
+    console.log(mapMarkers);
+
+  $scope.markers =  mapMarkersObjects;
+  
+})
 
 .controller('PlaylistsCtrl', function($scope, $firebase) {
   var usersArray = new Firebase("https://p2pdelivery.firebaseio.com/users");
