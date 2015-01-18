@@ -42,6 +42,19 @@
     border: 0;
 }
 
+i {
+    float: left;
+    margin-right: 10px;
+}
+
+img{
+    border-radius: 100%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 20px;
+}
+
 /* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
    follow these rules. Every browser that supports :checked also supports :not(), so
    it doesn’t make the test unnecessarily selective */

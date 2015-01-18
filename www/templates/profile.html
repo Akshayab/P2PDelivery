@@ -1,5 +1,33 @@
-<ion-view view-title="Profile" class="show-back-button">
+
+<ion-view view-title="PROFILE" class="show-back-button">
   <ion-content>
-    <h1>{{currentUser}}</h1>
-  </ion-content>
+    <img src="http://placehold.it/150x150">
+
+
+  <div class="list list-inset">
+	  <label class="item item-input"> 
+	    <i class="icon ion-person"></i>
+	    <input type="text" value={{profile.name}}>
+	  </label>
+	   <label class="item item-input"> 
+	    <i class="icon ion-email"></i>
+	    <input type="text" value={{profile.email}}>
+	  </label>
+	   <label class="item item-input"> 
+	   	<i class="icon ion-android-call"></i>  
+	    <input type="text" value={{profile.phoneNumber}}>
+	  </label>
+	   <label class="item item-input">  
+	   	<i class="icon ion-ribbon-b"></i>
+	    {{profile.loyaltyPoints}}
+	  </label>
+	  <label class="item item-input">  
+	   	<i class="icon ion-android-star"></i>
+	    {{profile.averageRating}}
+	  </label>
+	</div>
+
+		<button class="button button-outline button-assertive">Submit</button>
+	</ion-content>
+
 </ion-view>
