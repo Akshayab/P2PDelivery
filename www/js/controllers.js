@@ -1,6 +1,8 @@
 angular.module('starter.controllers', ['firebase'])
 
-.controller('AppCtrl', ["$scope", "$ionicModal", "$firebaseAuth", function($scope, $ionicModal, $timeout, $firebaseAuth) {
+.controller('AppCtrl', ["$scope", "$rootScope", "$ionicModal", "$firebaseAuth", "$firebase", function($scope, $rootScope, $ionicModal, $timeout, $firebaseAuth, $firebase) {
+
+  $rootScope.currentUser = {};
 
   // Users Array on Firebase
   var usersArray = new Firebase("https://p2pdelivery.firebaseio.com");
@@ -109,15 +111,37 @@ angular.module('starter.controllers', ['firebase'])
           console.log("Authentication successful with payload: ", authData);
           $scope.modal.hide();
           window.location.href = "#/app/userRequestView.html";
+
+          var useridData = authData.uid.split(":");
+          var userid = useridData[1];
+          
+          var userimg = usersArray.child('users').child(userid).image;
+          
+          // $scope.currentUser = {
+          //     "id": userid,
+          //     "email": authData.password.email,
+          //     "image": userimg
+          // };
+          currentUserObject = $firebase(usersArray.child('users').child(userid)).asObject();
+          $scope.currentUser = currentUserObject;
+          console.log($scope.currentUser);
+          localStorage.setItem("currentUser", $scope.currentUser);
         }
-    })
+    });
+    
   };
 
+
+  // $scope.centerMap = {
+  //   lat: 
+  // }
+  $scope.showMap = function () {
+      //console.log($scope.ninjas);
   angular.extend($scope, {
     center: {
-        lat: $scope.lat,
-        lng: $scope.lng,
-        zoom: 15
+        lat: 50,
+        lng: 50,
+        zoom: 5
     },
     markers: {
       mainMarker: {
@@ -143,6 +167,7 @@ angular.module('starter.controllers', ['firebase'])
     }
     
   }); 
+  }
 }])
 
   // Show users on the map
@@ -166,7 +191,7 @@ angular.module('starter.controllers', ['firebase'])
   var test = usersArray.once("value", function (value){
     $scope.playlists = value.val();
     
-  })
+  });
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams, $firebase) {

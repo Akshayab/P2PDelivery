@@ -1,3 +1,28 @@
+/* Misc Overrides */
+
+.show-back-button .back-button.hide {
+    display: block;
+}
+
+.leaflet-bottom, .leaflet-right {
+    display: none !important;
+}
+
+/* Buttons Override */
+
+.btn-request {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    display: block;
+    max-width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 24px;
+}
+
 .button-outline, .btn-center {
 	display: block;
 	margin-right: auto;
@@ -9,6 +34,8 @@
     width: 100%;
     max-width: 320px;
 }
+
+/* Rating Stars */
 
 .rating {
     margin-right: 39%;

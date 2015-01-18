@@ -1,6 +1,6 @@
-<ion-view view-title="REQUEST A MEAL" class:"bar bar-header bar-assertive" >
-  <h1>'</h1>
-  <div class="tabs-striped tabs-top tabs-background-assertive tabs-color-light" style="margin-top:100px;">
+<ion-view view-title="REQUEST A MEAL">
+
+  <div class="tabs-striped sub-header tabs-top tabs-background-assertive tabs-color-light" style="padding-top:93px;">
     
     <div class="tabs">
         
@@ -13,14 +13,15 @@
       </div>
     </div>
 
-     <leaflet id="mapBox" center="center" markers="markers" height="50%"></leaflet>
-  <div class="list list-inset">
-  <label class="item item-input">
-    <input type="text" placeholder="Enter Location" model="location">
-  </label>
-</div>
+    <leaflet id="mapBox" center="center" markers="markers" height="50%" width="100%"></leaflet>
+    
+    <div class="location-field">
+      <label class="item item-input">
+        <input type="text" placeholder="Enter Location" model="location">
+      </label>
+    </div>
 
-<button class="button btn-center btn-block button-assertive">Request Delivery</button>
+<button class="button button-assertive btn-request">Request Delivery</button>
 
 
 
