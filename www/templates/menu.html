@@ -1,8 +1,7 @@
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
     <ion-nav-bar class="bar-assertive">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
+
 
       <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
@@ -18,24 +17,21 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item nav-clear menu-close ng-click="login()">
-          Login
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/app/search">
-          Search
-        </ion-item>
+        <ion-item nav-clear menu-close href="#/app/userRequestView">
+          User Request
+        </ion-item>      
         <ion-item nav-clear menu-close href="#/app/profile">
           Profile
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/playlists">
           Playlists
         </ion-item>
-        <ion-item nav-clear menu-close href="#/app/userRequestView">
-          User Request
-        </ion-item>
         <ion-item nav-clear menu-close href="#/app/ninjaDeliveryView">
           Ninja on the move
         </ion-item>
+        <ion-item nav-clear menu-close ng-click="login()">
+          Logout (logs in right now)
+        </ion-item>        
       </ion-list>
     </ion-content>
   </ion-side-menu>

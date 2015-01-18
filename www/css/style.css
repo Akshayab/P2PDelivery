@@ -1,8 +1,13 @@
-/* Empty. Add your own CSS if you like */
-.button-outline{
+.button-outline, .btn-center {
 	display: block;
 	margin-right: auto;
 	margin-left: auto;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    max-width: 320px;
 }
 
 .rating {

@@ -1,10 +1,4 @@
-<ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Login</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Close</button>
-    </div>
-  </ion-header-bar>
+<ion-view view-title="LOGIN" class="bar-assertive" >
   <ion-content>
     <form ng-submit="doLogin()">
       <div class="list">
@@ -21,6 +15,7 @@
         </label>
       </div>
     </form>
-    <div class="register item" ng-click="goToSignUpPage()">Click here to register!</div>
+    <div class="text-center"><br><b>Don't have an account?</b></div><br>
+    <div class="button button-block" ng-click="goToSignUpPage()">Create One Now</div>
   </ion-content>
 </ion-modal-view>

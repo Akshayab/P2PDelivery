@@ -79,7 +79,7 @@ angular.module('starter.controllers', ['firebase'])
           do_not_disturb: false
         })
         $scope.modal.hide();
-        window.location.href = "#/app/search.html?id=userid";
+        window.location.href = "#/app/userRequestView.html?id=userid";
       }
       else{
         console.log(error);
@@ -98,11 +98,12 @@ angular.module('starter.controllers', ['firebase'])
     }, function (error, authData) {
         if (error) {
           console.log("Login Failed!");
+          alert("Login Failed!");
         }
         else {
           console.log("Authentication successful with payload: ", authData);
           $scope.modal.hide();
-          window.location.href = "#/app/search.html&id=userid";
+          window.location.href = "#/app/userRequestView.html";
         }
     })
   };

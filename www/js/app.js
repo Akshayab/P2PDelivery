@@ -29,16 +29,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase', 'leaflet-
     templateUrl: "templates/menu.html",
     controller: 'AppCtrl'
   })
-
-  .state('app.search', {
-    url: "/search",
+  .state('app.login', {
+    url: "/login",
     views: {
       'menuContent': {
-        templateUrl: "templates/search.html"
+        templateUrl: "templates/login.html"
       }
     }
-  })
-
+  })  
   .state('app.profile', {
     url: "/profile",
     views: {
@@ -82,5 +80,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase', 'leaflet-
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/search');
+  $urlRouterProvider.otherwise('/app/userRequestView');
 });
