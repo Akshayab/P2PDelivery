@@ -56,7 +56,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase', 'leaflet-
         }
       }
     })
-
+    .state('app.userRequestView', {
+      url: "/userRequestView",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/userRequestView.html",
+        }
+      }
+    })
   .state('app.single', {
     url: "/playlists/:id",
     views: {
