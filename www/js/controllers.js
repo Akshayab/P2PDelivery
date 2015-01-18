@@ -154,9 +154,9 @@ angular.module('starter.controllers', ['firebase'])
 
 
   $scope.centerMap = {
-    lat: 50,
-    lng: 50,
-    zoom: 5
+    lat: 42.2733204,    
+    lng: -83.7376894,
+    zoom: 13
   }  
   
 }])

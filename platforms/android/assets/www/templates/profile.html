@@ -3,8 +3,8 @@
   <ion-content>
 
   	<div>
-    <img class="js-profile" src="http://placehold.it/150x150">
-    <div filepicker path="/s3ServerPath/" pickerclass="btn btn-default" container="Mys3Bucket" multiple="true" mimetype="*" callback="callBackToExecuteAfterUpload(file)" multiple=false>Upload Picture...</div>
+    <img id="pfrofileimg" class="js-profile" src="http://spacelist.ca/assets/v2/placeholder-user.jpg">
+    <div filepicker path="/s3ServerPath/" pickerclass="btn btn-default" container="Mys3Bucket" multiple="true" mimetype="*" callback="uploadImg(file)" multiple=false>Upload Picture...</div>
     </div>
 
   <div class="list list-inset">
