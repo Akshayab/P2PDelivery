@@ -108,43 +108,36 @@ angular.module('starter.controllers', ['firebase'])
     })
   };
 
-  $scope.showMap = function () {
-      //console.log($scope.ninjas);
   angular.extend($scope, {
     center: {
         lat: $scope.lat,
         lng: $scope.lng,
-        zoom: 5
+        zoom: 15
     },
-    //markers: JSON.stringify($scope.ninjas)
     markers: {
       mainMarker: {
-        lat: 50,
-        lng: -1.0
+        lat: 42.2841,
+        lng: -83.74
+      },
+      marker2: {
+        lat: 43.2841,
+        lng: -83.74
+      },
+      marker3: {
+        lat: 41.2841,
+        lng: -84.74
+      },
+      marker4: {
+        lat: 42.218431,
+        lng: -83.724
+      },
+      marker5: {
+        lat: 44.2841,
+        lng: -93.74
       }
     }
     
   }); 
-
-  }
-
-  $scope.ninjas = [];
-
-  // Ninjas array to populate the map
-  var markers = {};
-  var ninjaSnapShot;
-  
-  usersArray.child('users').once("value", function (ninjas) {
-
-    markers = ninjas.val().filter(function (nin) {
-      return nin.isNinja && nin.location != nil
-    });
-
-    console.log(markers);
-    $scope.showMap()
-  })    
-  
-  
 }])
 
   // Show users on the map
