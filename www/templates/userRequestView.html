@@ -1,38 +1,26 @@
-<ion-view view-title="RATE YOUR NINJA" class:"bar bar-header bar-assertive" >
+<ion-view view-title="REQUEST A MEAL" class:"bar bar-header bar-assertive" >
   <h1>'</h1>
   <div class="tabs-striped tabs-top tabs-background-assertive tabs-color-light" style="margin-top:100px;">
     
     <div class="tabs">
         
-        <a class="tab-item active" href="#/app/userRequestViewFavourites">
-          Favorites
+        <a class="tab-item active" href="#">
+          Request
         </a>
-        <a class="tab-item" href="#/app/userRequestViewSettings">
-          Settings
+        <a class="tab-item" href="#/app/ninjaDeliveryView">
+          Deliver
         </a>
       </div>
     </div>
 
-
+     <leaflet id="mapBox" center="center" markers="markers" height="50%"></leaflet>
   <div class="list list-inset">
   <label class="item item-input">
-    Name: {{ninja.name}}
-  </label>
-  <label class="item item-input">
-    Points Awarded: {{ninja.pointsAwarded}}
-  </label>
-  <label class="item item-input">
-    <textarea placeholder="Comments"></textarea>
+    <textarea placeholder="Enter Location"></textarea>
   </label>
 </div>
 
-<div class="list list-inset">
-
-
-</div>
-
-
-<button class="button button-outline button-assertive">Submit</button>
+<button class="button button-outline button-assertive">Request Delivery</button>
 
 
 

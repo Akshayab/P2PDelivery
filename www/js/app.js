@@ -64,19 +64,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase', 'leaflet-
         }
       }
     })
-    .state('app.userRequestViewFavourites', {
-      url: "/userRequestViewFavourites",
+    .state('app.ninjaDeliveryView', {
+      url: "/ninjaDeliveryView",
       views: {
         'menuContent': {
-          templateUrl: "templates/userRequestViewFavourites.html",
-        }
-      }
-    })    
-    .state('app.userRequestViewSettings', {
-      url: "/userRequestViewSettings",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/userRequestViewSettings.html",
+          templateUrl: "templates/ninjaDeliveryView.html",
         }
       }
     })        
