@@ -1,12 +1,13 @@
 angular.module('starter.controllers', ['firebase'])
 
-.controller('AppCtrl', ["$scope", "$rootScope", "$ionicModal", "$firebaseAuth", "$firebase", function($scope, $rootScope, $ionicModal, $timeout, $firebaseAuth, $firebase) {
+.controller('AppCtrl', ["$scope", "$rootScope", "$ionicModal", "$firebaseAuth", function($scope, $rootScope, $ionicModal, $timeout, $firebaseAuth, $firebase, myfactory, $document) {
 
   $rootScope.currentUser = {};
+  $rootScope.imageUrl = "";
 
   // Users Array on Firebase
   var usersArray = new Firebase("https://p2pdelivery.firebaseio.com");
-  var testArray = [];
+
 
   // Form data for the login modal
   $scope.loginData = {
@@ -86,7 +87,7 @@ angular.module('starter.controllers', ['firebase'])
           do_not_disturb: false
         })
         $scope.modal.hide();
-        window.location.href = "#/app/userRequestView.html?id=userid";
+        window.location.href = "#/app/userRequestView.html";
       }
       else{
         console.log(error);
@@ -96,6 +97,22 @@ angular.module('starter.controllers', ['firebase'])
   })
 
   };
+
+  // $scope.currentUser = function(userid) {
+  //   var theUser = myfactory.getArray();
+  //   console.log(theUser);
+
+
+  // } 
+
+          $scope.currentUser = {
+              "id": 0,
+              "name": "John Doe",
+              "email": "johndoe@acme.com",
+              "phone": "123-456-7890",
+              "points": 500,
+              "rating": 4              
+          };  
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
@@ -114,22 +131,26 @@ angular.module('starter.controllers', ['firebase'])
 
           var useridData = authData.uid.split(":");
           var userid = useridData[1];
+
+          $scope.currentUser(userid);
           
-          var userimg = usersArray.child('users').child(userid).image;
+          //var userimg = usersArray.child('users').child(userid).image;
           
           // $scope.currentUser = {
           //     "id": userid,
+          //     "name": "John Doe",
           //     "email": authData.password.email,
-          //     "image": userimg
+              
           // };
-          currentUserObject = $firebase(usersArray.child('users').child(userid)).$asObject();
-          $scope.currentUser = currentUserObject;
-          console.log($scope.currentUser);
-          localStorage.setItem("currentUser", $scope.currentUser);
+
+          //$rootScope.currentUser = $firebase(usersArray.child('users').child(userid)).$asObject();
+
+          // console.log($rootScope.currentUser);
         }
     });
     
   };
+
 
 
   $scope.centerMap = {
@@ -142,7 +163,7 @@ angular.module('starter.controllers', ['firebase'])
 
   
 
-.controller('MapCtrl', function($scope, $firebase) {
+.controller('MapCtrl', function($scope, $firebase, $document) {
   var usersArray = new Firebase("https://p2pdelivery.firebaseio.com/users");
 
     mapMarkersObjects = {};
@@ -168,6 +189,15 @@ angular.module('starter.controllers', ['firebase'])
 
   $scope.markers =  mapMarkersObjects;
   
+
+  // Filepicker img for profile
+
+  $scope.uploadImg = function(file) {
+    //$('.js-profile').attr('src')
+    console.log(file);
+  }
+
+
 })
 
 .controller('PlaylistsCtrl', function($scope, $firebase) {
@@ -189,9 +219,6 @@ angular.module('starter.controllers', ['firebase'])
 
 })
 
-.controller('ProfileCtrl', function($scope, $stateParams, $firebase){
-
-})
 
 .directive("filepicker", function(){
   return {
@@ -203,8 +230,9 @@ angular.module('starter.controllers', ['firebase'])
     restrict: "A",
 
     template: "<button href='javascript:;' class='{{pickerclass}} button button-clear button-assertive' ng-click='pickFiles()' ng-transclude>Upload Picture...</button>",
-    link: function(scope, element, attrs) {
-      scope.pickFiles = function () {
+
+    link: function($scope, element, attrs) {
+      $scope.pickFiles = function () {
         var picker_options = {
           container: 'modal',
           mimetypes: "image/*",
@@ -220,9 +248,14 @@ angular.module('starter.controllers', ['firebase'])
           container: container
         };
         filepicker.setKey("AucuSEbFQdWQGPMB4huCgz");
-      
-        filepicker.pickAndStore(picker_options, store_options, function (fpfile) {
+
+        filepicker.pickAndStore(picker_options, store_options, function (fpfile) {            
             console.log(JSON.stringify(fpfile));
+            var filep = JSON.stringify(fpfile);
+            //$scope.uploadImg(JSON.stringify(fpfile));
+            //$document.getElementbyId('#profileimg').setAttribute('src', filep[0].url);
+            //$('#profileimg').attr('src') = filep[0].url);
+
         });
       };
     }

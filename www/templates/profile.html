@@ -3,30 +3,30 @@
   <ion-content>
 
   	<div>
-    <img class="js-profile" src="http://placehold.it/150x150">
-    <div filepicker path="/s3ServerPath/" pickerclass="btn btn-default" container="Mys3Bucket" multiple="true" mimetype="*" callback="callBackToExecuteAfterUpload(file)" multiple=false>Upload Picture...</div>
+    <img id="pfrofileimg" class="js-profile" src="http://spacelist.ca/assets/v2/placeholder-user.jpg">
+    <div filepicker path="/s3ServerPath/" pickerclass="btn btn-default" container="Mys3Bucket" multiple="true" mimetype="*" callback="uploadImg(file)" multiple=false>Upload Picture...</div>
     </div>
 
   <div class="list list-inset">
 	  <label class="item item-input"> 
 	    <i class="icon ion-person"></i>
-	    <input type="text" value={{profile.name}} placeholder="Name">
+	    <input type="text" value={{currentUser.name}}>
 	  </label>
 	   <label class="item item-input"> 
 	    <i class="icon ion-email"></i>
-	    <input type="text" value={{profile.email}} placeholder="Email">
+	    <input type="text" value={{currentUser.email}}>
 	  </label>
 	   <label class="item item-input"> 
 	   	<i class="icon ion-android-call"></i>  
-	    <input type="text" value={{profile.phoneNumber}} placeholder="Phone Number">
+	    <input type="text" value={{currentUser.phone}}>
 	  </label>
 	   <label class="item item-input">  
 	   	<i class="icon ion-ribbon-b"></i>
-	    {{profile.loyaltyPoints}}
+	    {{currentUser.points}}
 	  </label>
 	  <label class="item item-input">  
 	   	<i class="icon ion-android-star"></i>
-	    {{profile.averageRating}}
+	    {{currentUser.rating}}
 	  </label>
 	</div>
 

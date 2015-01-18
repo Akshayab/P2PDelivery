@@ -1,0 +1,28 @@
+<ion-view view-title="REQUEST A MEAL">
+
+  <div class="tabs-striped sub-header tabs-top tabs-background-assertive tabs-color-light" style="padding-top:93px;">
+    
+    <div class="tabs">
+        
+        <a class="tab-item active" href="#">
+          Request
+        </a>
+        <a class="tab-item" href="#/app/ninjaDeliveryView">
+          Deliver
+        </a>
+      </div>
+    </div>
+
+    <leaflet id="mapBox" center="centerMap" markers="markers" height="50%" width="100%"></leaflet>
+    
+    <div class="location-field">
+      <label class="item item-input">
+        <input type="text" placeholder="Enter Location" model="location">
+      </label>
+    </div>
+
+<button class="button button-assertive btn-request">Request Delivery</button>
+
+
+
+</ion-view>

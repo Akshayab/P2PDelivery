@@ -1,0 +1,36 @@
+
+<ion-view view-title="PROFILE" class="show-back-button">
+  <ion-content>
+
+  	<div>
+    <img class="js-profile" src="http://placehold.it/150x150">
+    <div filepicker path="/s3ServerPath/" pickerclass="btn btn-default" container="Mys3Bucket" multiple="true" mimetype="*" callback="callBackToExecuteAfterUpload(file)" multiple=false>Upload Picture...</div>
+    </div>
+
+  <div class="list list-inset">
+	  <label class="item item-input"> 
+	    <i class="icon ion-person"></i>
+	    <input type="text" value={{currentUser.name}}>
+	  </label>
+	   <label class="item item-input"> 
+	    <i class="icon ion-email"></i>
+	    <input type="text" value={{currentUser.email}}>
+	  </label>
+	   <label class="item item-input"> 
+	   	<i class="icon ion-android-call"></i>  
+	    <input type="text" value={{currentUser.phone}}>
+	  </label>
+	   <label class="item item-input">  
+	   	<i class="icon ion-ribbon-b"></i>
+	    {{currentUser.points}}
+	  </label>
+	  <label class="item item-input">  
+	   	<i class="icon ion-android-star"></i>
+	    {{currentUser.rating}}
+	  </label>
+	</div>
+
+		<button class="button button-outline button-assertive">Submit</button>
+	</ion-content>
+
+</ion-view>
