@@ -72,7 +72,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase', 'leaflet-
           templateUrl: "templates/ninjaDeliveryView.html",
         }
       }
-    })        
+    })  
+    .state('app.feedback', {
+      url: "/feedback",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/feedback.html",
+        }
+      }
+    })      
   .state('app.single', {
     url: "/playlists/:id",
     views: {
